@@ -1,0 +1,402 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;0,14..32,800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── BIS SAKSHAM Global Design Tokens ─── */
+:root {
+  --navy-900: #0B1F3A;
+  --saffron-500: #F59E0B;
+  --ai-600: #4F46E5;
+  --gov-green: #16834B;
+  --surface: #F7F8FA;
+  --card: #FFFFFF;
+  --border: #E2E8F0;
+  --text-primary: #111827;
+  --text-secondary: #64748B;
+
+  /* Transitions */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Base Reset ─── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--surface);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── Custom Scrollbar ─── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: #F1F5F9; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+/* ─── Focus States (Accessibility) ─── */
+:focus-visible {
+  outline: 2px solid #4F46E5;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Selection ─── */
+::selection {
+  background-color: rgba(79, 70, 229, 0.15);
+  color: #111827;
+}
+
+/* ─── Typography Hierarchy ─── */
+.heading-display {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #0B1F3A;
+}
+
+.heading-xl {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: #0B1F3A;
+}
+
+.heading-lg {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: #0B1F3A;
+}
+
+/* ─── Component Utilities ─── */
+
+/* Cards */
+.card-base {
+  background: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.06), 0 1px 2px -1px rgba(0,0,0,0.06);
+}
+
+.card-hover {
+  transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+.card-hover:hover {
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+/* Buttons */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: #0B1F3A;
+  color: #FFFFFF;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+.btn-primary:hover {
+  background: #122D55;
+  box-shadow: 0 4px 12px rgba(11,31,58,0.25);
+  transform: translateY(-1px);
+}
+.btn-primary:active { transform: translateY(0); }
+
+.btn-saffron {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: #F59E0B;
+  color: #111827;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+.btn-saffron:hover {
+  background: #D97706;
+  box-shadow: 0 4px 12px rgba(245,158,11,0.3);
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  background: transparent;
+  color: #0B1F3A;
+  font-size: 0.875rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  border: 1.5px solid #E2E8F0;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.btn-outline:hover {
+  border-color: #0B1F3A;
+  background: rgba(11,31,58,0.04);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.875rem;
+  background: transparent;
+  color: #64748B;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+.btn-ghost:hover {
+  background: rgba(11,31,58,0.06);
+  color: #0B1F3A;
+}
+
+/* ─── Badges / Pills ─── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.badge-mandatory   { background: #FEE2E2; color: #991B1B; }
+.badge-optional    { background: #F1F5F9; color: #475569; }
+.badge-satisfied   { background: #DCFCE7; color: #166534; }
+.badge-missing     { background: #FEF2F2; color: #DC2626; }
+.badge-review      { background: #FEF9C3; color: #854D0E; }
+.badge-na          { background: #F1F5F9; color: #64748B; }
+.badge-demo        { background: #EDE9FE; color: #6D28D9; }
+.badge-ai          { background: #EDE9FE; color: #4F46E5; }
+.badge-bis         { background: #DBEAFE; color: #1E40AF; }
+.badge-standard    { background: #DBEAFE; color: #1E40AF; }
+.badge-qco         { background: #FEF3C7; color: #92400E; }
+.badge-test        { background: #F0FDF4; color: #166534; }
+.badge-document    { background: #F0F9FF; color: #0369A1; }
+.badge-confirmed   { background: #DCFCE7; color: #166534; }
+.badge-potential   { background: #FEF9C3; color: #854D0E; }
+.badge-none        { background: #F1F5F9; color: #64748B; }
+.badge-needs-verification { background: #FFF7ED; color: #9A3412; }
+
+/* ─── Status Dots ─── */
+.status-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.status-dot.satisfied { background: #16A34A; }
+.status-dot.missing   { background: #DC2626; }
+.status-dot.review    { background: #EAB308; }
+.status-dot.na        { background: #94A3B8; }
+
+/* ─── Source Trust Labels ─── */
+.trust-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+}
+.trust-label.ai        { color: #4F46E5; background: #EDE9FE; }
+.trust-label.bis       { color: #1E40AF; background: #DBEAFE; }
+.trust-label.demo      { color: #6D28D9; background: #EDE9FE; border: 1px solid #C4B5FD; }
+.trust-label.verify    { color: #9A3412; background: #FFF7ED; }
+
+/* ─── Compliance Flow Nodes ─── */
+.flow-node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: transform var(--transition-base);
+}
+.flow-node:hover { transform: translateY(-3px); }
+
+.flow-node-icon {
+  width: 56px; height: 56px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+  transition: all var(--transition-base);
+}
+
+/* ─── Skeleton Loader ─── */
+.skeleton {
+  background: linear-gradient(90deg, #F1F5F9 25%, #E2E8F0 50%, #F1F5F9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+  border-radius: 0.375rem;
+}
+
+/* ─── Divider ─── */
+.divider {
+  height: 1px;
+  background: #E2E8F0;
+  margin: 1.5rem 0;
+}
+
+/* ─── Page Transitions ─── */
+.page-enter {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 350ms ease, transform 350ms ease;
+}
+
+/* ─── Tables ─── */
+.table-enterprise {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+.table-enterprise th {
+  background: #F8FAFC;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: #64748B;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid #E2E8F0;
+  white-space: nowrap;
+}
+.table-enterprise td {
+  padding: 0.875rem 1rem;
+  font-size: 0.875rem;
+  color: #374151;
+  border-bottom: 1px solid #F1F5F9;
+  vertical-align: middle;
+}
+.table-enterprise tr:hover td {
+  background: #F8FAFC;
+  cursor: pointer;
+}
+.table-enterprise tr:last-child td { border-bottom: none; }
+
+/* ─── Drawer ─── */
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11,31,58,0.35);
+  backdrop-filter: blur(2px);
+  z-index: 50;
+}
+.drawer-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 420px;
+  max-width: 95vw;
+  background: #FFFFFF;
+  box-shadow: -8px 0 32px rgba(0,0,0,0.12);
+  z-index: 51;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Compliance Progress ─── */
+.progress-bar {
+  height: 6px;
+  border-radius: 9999px;
+  background: #E2E8F0;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── React Flow Overrides ─── */
+.react-flow__node {
+  font-family: 'Inter', sans-serif;
+}
+.react-flow__controls {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 0.5rem;
+  border: 1px solid #E2E8F0;
+  overflow: hidden;
+}
+.react-flow__controls-button {
+  background: #FFFFFF;
+  border-bottom: 1px solid #F1F5F9;
+  color: #64748B;
+}
+.react-flow__controls-button:hover { background: #F8FAFC; color: #0B1F3A; }
+
+/* ─── Section Headers ─── */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #F59E0B;
+  margin-bottom: 0.75rem;
+}
+
+/* ─── Reduced Motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Mobile Responsive ─── */
+@media (max-width: 768px) {
+  .heading-display { font-size: 2rem; }
+  .drawer-panel { width: 100%; }
+  .table-enterprise { font-size: 0.8125rem; }
+}
