@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🇮🇳 BIS SAKSHAM
+#  BIS-SAKSHAM
 
 ### Turning Standards into Strength.
 
